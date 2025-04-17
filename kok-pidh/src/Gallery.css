@@ -1,0 +1,93 @@
+.gallery-wrapper {
+    padding: 50px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gallery-title {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 50px;
+    color: #A64686;
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+}
+
+@media (min-width: 768px) {
+    .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.gallery-item {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.gallery-image.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.upload-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #A64686;;
+    color: white;
+    font-size: 55px;
+    border-radius: 10px;
+    width: 150px;
+    height: 70px;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: 0.3s ease;
+    padding-top: 5px;
+}
+
+.upload-button:hover {
+    background-color: #40C8F4;
+}
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    color: #007bff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 35px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #f0f0f0;
+}
