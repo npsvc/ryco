@@ -122,7 +122,7 @@ const App = () => {
         {visibleCount < allImages.length ? (
           <button onClick={handleSeeMore} className="see-more-button">See more</button>
         ) : (
-          <Link to="/gallery" className="see-more-button">See full gallery</Link>
+          <Link to="/gallery" className="see-more-button"  onClick={() => window.scrollTo(0, 0)}>See full gallery</Link>
         )}
       </div>
     <div className="app-wrapper">

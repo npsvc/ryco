@@ -132,6 +132,22 @@
     margin: 0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+@media (max-width: 768px) {
+    #naslov > h1 {
+    font-size: 28px;
+    padding: 0 10px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    #naslov {
+    height: 100px;
+    }
+    #naslov > h1 {
+    font-size: 22px;
+    }
+}
 .app-wrapper {
     height: 600px;
     display: flex;
