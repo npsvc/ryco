@@ -3,7 +3,7 @@ import './Gallery.css'
 import { Link } from 'react-router-dom'
 
 const Gallery = () => {
-    const initialImages = [
+  const initialImages = [
     'src/assets/photos/fav.jpg',
     'src/assets/photos/Super School-102.jpg',
     'src/assets/photos/i15.jpg',
@@ -38,6 +38,7 @@ const Gallery = () => {
   ]
 
   const [allImages, setAllImages] = useState(initialImages)
+  const [selectedImage, setSelectedImage] = useState(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -77,12 +78,22 @@ const Gallery = () => {
               src={src.startsWith('blob:') ? src : `/${src}`}
               alt={`Gallery ${index + 1}`}
               className="gallery-image fade-in-on-scroll"
+              onClick={() => setSelectedImage(src.startsWith('blob:') ? src : `/${src}`)}
             />
           </div>
         ))}
       </div>
 
-      {/* Floating Add Button */}
+      {selectedImage && (
+        <div className="modal-overlay" onClick={() => setSelectedImage(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage} alt="Selected" className="modal-image" />
+            <a href={selectedImage} download className="download-button">Download</a>
+            <button className="close-button" onClick={() => setSelectedImage(null)}>×</button>
+          </div>
+        </div>
+      )}
+
       <label htmlFor="upload-input" className="upload-button">
         +
       </label>
@@ -94,11 +105,9 @@ const Gallery = () => {
         style={{ display: 'none' }}
       />
       <Link to="/" className="back-button">
-  &#8592;
-</Link>
-
+        &#8592;
+      </Link>
     </div>
-    
   )
 }
 

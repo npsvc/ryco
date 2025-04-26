@@ -97,6 +97,7 @@ const App = () => {
         <img src='src/assets/rycologo.png'></img>
       </div>
       <div id='prsl'>
+      <div className="overlay"></div>
         <img src='src/assets/photos/w1.jpg'></img>
   <div className="text">
     <h1>Our Exchange</h1>
@@ -126,11 +127,12 @@ const App = () => {
       </div>
     <div className="app-wrapper">
       <div className="button-container fade-in-section">
-      <Link to="/gallery" className="nav-button">
+      <Link to="/gallery" className="nav-button" 
+      onClick={() => window.scrollTo(0, 0)}> 
         <img src='src/assets/galerijaicon.png' alt="Galerija" />
         <span>Gallery</span>
       </Link>
-      <Link to="/report" className="nav-button">
+      <Link to="/report" className="nav-button" onClick={() => window.scrollTo(0, 0)}>
         <img src='src/assets/izvjestaj.png' alt="Izvještaji" />
         <span>Report</span>
       </Link>
