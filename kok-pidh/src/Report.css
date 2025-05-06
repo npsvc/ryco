@@ -53,3 +53,11 @@
 .back-button:hover {
     background-color: #f0f0f0;
 }
+#creditsss{
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 17px;
+    color: #A64686;
+    text-align: center;
+    margin-top: 120px;
+    height: 150px;
+}
