@@ -138,10 +138,10 @@ const App = () => {
       </Link>
       </div>
     </div>
-    <div id='credits'>
-    <p>Made by:</p>
-    <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
-    </div>
+      <div id='credits'>
+        <p>Made by:</p>
+        <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
+      </div>
     </div>
   )
 }

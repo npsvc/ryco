@@ -108,10 +108,10 @@ const Gallery = () => {
       <Link to="/" className="back-button">
         &#8592;
       </Link>
-      <div id='creditss'>
-        <p>Made by:</p>
-        <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
-      </div>
+        <div id='creditss'>
+          <p>Made by:</p>
+          <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
+        </div>
     </div>
   )
 }
