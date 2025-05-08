@@ -12,5 +12,5 @@ Route::post('/login',    [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/upload-image', [ImageController::class, 'upload']);
+    Route::apiResource('/images', ImageController::class)->only(['index', 'store']);
 });
