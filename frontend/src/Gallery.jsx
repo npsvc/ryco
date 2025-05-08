@@ -3,42 +3,26 @@ import './Gallery.css'
 import { Link } from 'react-router-dom'
 
 const Gallery = () => {
-  const initialImages = [
-    'src/assets/photos/fav.jpg',
-    'src/assets/photos/Super School-102.jpg',
-    'src/assets/photos/i15.jpg',
-    'src/assets/photos/i16.jpg',
-    'src/assets/photos/i20.jpg',
-    'src/assets/photos/i23.jpg',
-    'src/assets/photos/s3.jpg',
-    'src/assets/photos/s5.jpg',
-    'src/assets/photos/w1.jpg',
-    'src/assets/photos/d1.jpg',
-    'src/assets/photos/i1.jpg',
-    'src/assets/photos/i3.jpg',
-    'src/assets/photos/i4.jpg',
-    'src/assets/photos/i5.jpg',
-    'src/assets/photos/i6.jpg',
-    'src/assets/photos/i7.jpg',
-    'src/assets/photos/i8.jpg',
-    'src/assets/photos/i9.jpg',
-    'src/assets/photos/i10.jpg',
-    'src/assets/photos/i11.jpg',
-    'src/assets/photos/i12.jpg',
-    'src/assets/photos/i14.jpg',
-    'src/assets/photos/i18.jpg',
-    'src/assets/photos/i19.jpg',
-    'src/assets/photos/i21.jpg',
-    'src/assets/photos/i22.jpg',
-    'src/assets/photos/i25.jpg',
-    'src/assets/photos/i26.jpg',
-    'src/assets/photos/i27.jpg',
-    'src/assets/photos/s2.jpg',
-    'src/assets/photos/s4.jpg',
-  ]
-
-  const [allImages, setAllImages] = useState(initialImages)
+  const [allImages, setAllImages] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch('https://api.nina.lukamasulovic.site/api/images', {
+          headers: {
+            Authorization: 'Bearer 1|RwZ6nv6XpLgKfHZwiBgurw59HZjvYhM6u8ulXEB9209150f6',
+          },
+        })
+        const data = await response.json()
+        setAllImages(data.map(item => item.url))
+      } catch (error) {
+        console.error('Failed to fetch images:', error)
+      }
+    }
+
+    fetchImages()
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,13 +42,31 @@ const Gallery = () => {
     return () => {
       elements.forEach(el => observer.unobserve(el))
     }
-  }, [])
+  }, [allImages])
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0]
-    if (file) {
-      const imageURL = URL.createObjectURL(file)
-      setAllImages(prev => [...prev, imageURL])
+    if (!file) return
+
+    const formData = new FormData()
+    formData.append('image', file)
+
+    try {
+      const response = await fetch('https://api.nina.lukamasulovic.site/api/images', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer 1|RwZ6nv6XpLgKfHZwiBgurw59HZjvYhM6u8ulXEB9209150f6',
+        },
+        body: formData,
+      })
+
+      if (!response.ok) throw new Error('Upload failed')
+
+      const result = await response.json()
+      setAllImages(prev => [...prev, result.url])
+    } catch (error) {
+      console.error('Image upload error:', error)
+      alert('Greška pri slanju slike.')
     }
   }
 
@@ -75,14 +77,13 @@ const Gallery = () => {
         {allImages.map((src, index) => (
           <div key={index} className="gallery-item">
             <img
-              src={src.startsWith('blob:') ? src : `/${src}`}
+              src={src}
               alt={`Gallery ${index + 1}`}
               className="gallery-image fade-in-on-scroll"
-              onClick={() => setSelectedImage(src.startsWith('blob:') ? src : `/${src}`)}
+              onClick={() => setSelectedImage(src)}
             />
           </div>
         ))}
-        
       </div>
 
       {selectedImage && (
@@ -108,10 +109,10 @@ const Gallery = () => {
       <Link to="/" className="back-button">
         &#8592;
       </Link>
-        <div id='creditss'>
-          <p>Made by:</p>
-          <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
-        </div>
+      <div id='creditss'>
+        <p>Made by:</p>
+        <p>FrontEnd: Nikolina Pisarević | BackEnd: Jovan Kešeljević</p>
+      </div>
     </div>
   )
 }
