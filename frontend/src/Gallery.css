@@ -151,7 +151,7 @@
 }
 #creditss{
     font-family: 'Segoe UI', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     color: #A64686;
     text-align: center;
     margin-top: 120px;
@@ -160,7 +160,7 @@
 }
 
 .delete-button {
-    background-color: #dc3545; /* crvena */
+    background-color: #dc3545; 
     color: white;
     padding: 10px 20px;
     border-radius: 8px;

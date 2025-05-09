@@ -32,23 +32,14 @@
     top: 0;
     right: 0;
 }
-@media (max-width: 479px) {
+@media (max-width: 480px) {
     .petar{
         height: 100px;
-    }
-    .skola{
-        height: 100px;
-    }
-    
-}
-@media (max-width: 767px) {
-    .petar{
-        height: 140px;
         position: absolute;
         top: 10px;
     }
     .skola{
-        height: 140px;
+        height: 100px;
         position: absolute;
         top: 10px;
     }
@@ -180,6 +171,12 @@
     #naslov > h1 {
     font-size: 22px;
     }
+    #prsl .text h1{
+    font-size: 40px;
+    }
+    #prsl .text p{
+    font-size: 20px;
+    }
 }
 .app-wrapper {
     height: 600px;
@@ -220,23 +217,6 @@
     font-size: 25px;
     color: #333;
 }
-@media (max-width: 479px) {
-    .button-container {
-        gap: 20px;
-    }
-    .nav-button {
-        width: 100%;
-        max-width: 120px;
-        height: 200px;
-    }
-    .nav-button img {
-        width: 100px;
-        height: 300px;
-    }
-    .nav-button span {
-        font-size: 18px;
-    }
-}
 @media (max-width: 767px) {
     .button-container {
         gap: 80px;
@@ -254,6 +234,22 @@
         font-size: 20px;
     }
 }
+@media (max-width: 480px) {
+    .button-container {
+        gap: 25px;
+    }
+    .nav-button {
+        width: 100px;
+        height: 190px;
+    }
+    .nav-button img {
+        width: 100px;
+        height: 300px;
+    }
+    .nav-button span {
+        font-size: 18px;
+    }
+}
 .gallery-preview-wrapper {
     text-align: center;
     margin: 40px 20px;
@@ -266,7 +262,11 @@
     margin-bottom: 20px;
     color: #A64686;
 }
-
+@media (max-width: 480px){
+    .section-title {
+        font-size: 30px;
+    }
+}
 .gallery-grid {
     display: grid;
     gap: 20px;
@@ -315,7 +315,12 @@
     text-decoration: none;
     display: inline-block;
 }
-
+@media (max-width: 480px){
+    .see-more-button {
+        font-size: 20px;
+        padding: 8px 16px;
+    }
+}
 .see-more-button:hover {
     background-color: #40C8F4;
 }
@@ -337,9 +342,10 @@
 }
 #credits{
     font-family: 'Segoe UI', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     color: #A64686;
     text-align: center;
-    margin-top: -20px;
+    margin-top: -150px;
+    padding: 10px;
     height: 350px;
 }
