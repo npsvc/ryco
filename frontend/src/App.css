@@ -32,6 +32,27 @@
     top: 0;
     right: 0;
 }
+@media (max-width: 479px) {
+    .petar{
+        height: 100px;
+    }
+    .skola{
+        height: 100px;
+    }
+    
+}
+@media (max-width: 767px) {
+    .petar{
+        height: 140px;
+        position: absolute;
+        top: 10px;
+    }
+    .skola{
+        height: 140px;
+        position: absolute;
+        top: 10px;
+    }
+}
 #ryco > h2{
     font-size: 40px;
     font-family:'Segoe UI', Tahoma, Geneva, 
@@ -58,9 +79,21 @@
     color: #40C8F4;
     text-decoration: none;
 }
+@media (max-width: 479px){
+    #ryco > h2{
+        font-size: 30px;
+        margin-top: 40px;
+    }
+    #ryco > p{
+        font-size: 15px;
+    }
+    #ryco > a{
+        font-size: 19px;
+    }
+}
 #footer{
     background-color: #A64686;
-    height: 100px;
+    height: 70px;
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -71,7 +104,7 @@
 }
 #footer > img{
     display: inline-block;
-    height: 80px;
+    height: 50px;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -155,12 +188,10 @@
     align-items: center;
     padding-bottom: 90px;
 }
-
 .button-container {
     display: flex;
     gap: 150px;
 }
-
 .nav-button {
     display: flex;
     flex-direction: column;
@@ -189,7 +220,40 @@
     font-size: 25px;
     color: #333;
 }
-
+@media (max-width: 479px) {
+    .button-container {
+        gap: 20px;
+    }
+    .nav-button {
+        width: 100%;
+        max-width: 120px;
+        height: 200px;
+    }
+    .nav-button img {
+        width: 100px;
+        height: 300px;
+    }
+    .nav-button span {
+        font-size: 18px;
+    }
+}
+@media (max-width: 767px) {
+    .button-container {
+        gap: 80px;
+    }
+    .nav-button {
+        width: 100%;
+        max-width: 200px;
+        height: 200px;
+    }
+    .nav-button img {
+        width: 130px;
+        height: 300px;
+    }
+    .nav-button span {
+        font-size: 20px;
+    }
+}
 .gallery-preview-wrapper {
     text-align: center;
     margin: 40px 20px;
