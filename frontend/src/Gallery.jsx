@@ -115,7 +115,40 @@ const Gallery = () => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <img src={selectedImage} alt="Selected" className="modal-image" />
             <div>
-              <a href={selectedImage} download className="download-button">Download</a>
+            <button
+              className="download-button"
+              onClick={async () => {
+                try {
+                  const response = await fetch(selectedImage, {
+                    headers: {
+                      Authorization: 'Bearer 1|RwZ6nv6XpLgKfHZwiBgurw59HZjvYhM6u8ulXEB9209150f6',
+                    },
+                  })
+
+                  if (!response.ok) throw new Error('Neuspešan fetch')
+
+                  const blob = await response.blob()
+                  const url = window.URL.createObjectURL(blob)
+                  const a = document.createElement('a')
+                  a.href = url
+
+                  const filename = selectedImage.split('/').pop()
+                  a.download = filename
+
+                  document.body.appendChild(a)
+                  a.click()
+                  document.body.removeChild(a)
+                  window.URL.revokeObjectURL(url)
+                } catch (error) {
+                  console.error('Download error:', error)
+                  alert('Greška pri preuzimanju slike.')
+                }
+              }}
+            >
+              Download
+            </button>
+
+
               <button className="delete-button" onClick={() => {
                 const filename = selectedImage.split('/').pop()
                 handleDeleteImage(filename)
