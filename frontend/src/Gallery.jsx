@@ -69,6 +69,30 @@ const Gallery = () => {
       alert('Greška pri slanju slike.')
     }
   }
+  
+  const handleDeleteImage = async (filename) => {
+    const confirmed = window.confirm('Da li ste sigurni da želite da obrišete ovu sliku?')
+    if (!confirmed) return
+
+    try {
+      const response = await fetch('https://api.nina.lukamasulovic.site/api/images', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer 1|RwZ6nv6XpLgKfHZwiBgurw59HZjvYhM6u8ulXEB9209150f6',
+        },
+        body: JSON.stringify({ filename }),
+      })
+
+      if (!response.ok) throw new Error('Delete failed')
+
+      setAllImages(prev => prev.filter(image => image.split('/').pop() !== filename))
+      setSelectedImage(null)
+    } catch (error) {
+      console.error('Delete error:', error)
+      alert('Greška pri brisanju slike.')
+    }
+  }
 
   return (
     <div className="gallery-wrapper">
@@ -90,7 +114,13 @@ const Gallery = () => {
         <div className="modal-overlay" onClick={() => setSelectedImage(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <img src={selectedImage} alt="Selected" className="modal-image" />
-            <a href={selectedImage} download className="download-button">Download</a>
+            <div>
+              <a href={selectedImage} download className="download-button">Download</a>
+              <button className="delete-button" onClick={() => {
+                const filename = selectedImage.split('/').pop()
+                handleDeleteImage(filename)
+              }}>Delete</button>
+            </div>
             <button className="close-button" onClick={() => setSelectedImage(null)}>×</button>
           </div>
         </div>

@@ -158,3 +158,20 @@
     height: 150px;
     text-wrap: wrap;
 }
+
+.delete-button {
+    background-color: #dc3545; /* crvena */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
