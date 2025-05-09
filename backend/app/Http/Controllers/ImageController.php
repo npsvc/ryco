@@ -37,4 +37,20 @@ class ImageController extends Controller
             'url' => asset('storage/' . $path),
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'filename' => 'required|string',
+        ]);
+
+        $filePath = 'images/' . $request->input('filename');
+
+        if (Storage::disk('public')->exists($filePath)) {
+            Storage::disk('public')->delete($filePath);
+            return response()->json(['message' => 'Image deleted successfully.']);
+        }
+
+        return response()->json(['message' => 'Image not found.'], 404);
+    }
 }
